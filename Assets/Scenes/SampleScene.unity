@@ -837,10 +837,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 979ef0da6feb46a6db76df896b510e25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
   speed: 20
   jumpForce: 25000
   isGround: 0
-  animator: {fileID: 1255792121}
 --- !u!95 &1255792121
 Animator:
   serializedVersion: 4
@@ -873,7 +873,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e6086c312430646869d8825ee9388e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGround: 0
+  playerjump: {fileID: 0}
+  anim: {fileID: 0}
 --- !u!1 &1863323578
 GameObject:
   m_ObjectHideFlags: 0
