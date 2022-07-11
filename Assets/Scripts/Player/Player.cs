@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
     private Vector3 facingLeft;
     public float jumpForce = 10f;
     public bool isGround;
-    public bool pulopulo;
 
     void Start()
     {
@@ -28,7 +27,7 @@ public class Player : MonoBehaviour
         Onjump();
     }
 
-    void Onjump()
+    public void Onjump()
     {
         if (Input.GetKeyDown(KeyCode.Space) && isGround == true)
         {
@@ -65,20 +64,6 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "ground")
         {
             isGround = true;
-        }
-    }
-
-    void pulo()
-    {
-        if (isGround == false)
-        {
-            pulopulo = false;
-            Debug.Log("test");
-        }
-        else if (isGround == true)
-        {
-            pulopulo = false;
-            Debug.Log("test2");
         }
     }
 }

@@ -4,30 +4,33 @@ using UnityEngine;
 
 public class Playeranim : MonoBehaviour
 {
-    private Player player;
+    public Player playerjump;
     public Animator anim;
+
+
 
 
     void Start()
     {
-        player = GetComponent<Player>();
+        playerjump = GetComponent<Player>();
         anim = GetComponent<Animator>();
     }
 
     void Update()
     {
-        AnimaJump();
+        //AnimaJump();
         AnimaRun();
 
     }
 
     void AnimaJump()
     {
-        if (player.pulopulo)
+        if (Input.GetKey(KeyCode.Space))
         {
+            Debug.Log(anim.GetInteger("transition"));
             anim.SetInteger("transition", 2);
         }
-        else
+        else if (playerjump.isGround == true)
         {
             anim.SetInteger("transition", 0);
         }
@@ -35,17 +38,23 @@ public class Playeranim : MonoBehaviour
 
     void AnimaRun()
     {
-        if (Input.GetKey(KeyCode.D))
+        if (playerjump.isGround == false)
         {
-            anim.SetInteger("transition", 1);
+            anim.SetBool("jump", true);
+            anim.SetBool("move", false);
         }
-        else if (Input.GetKey(KeyCode.A))
+        else if (playerjump.isGround == true)
         {
-            anim.SetInteger("transition", 1);
+            anim.SetBool("jump", false);
+        }
+
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
+        {
+            anim.SetBool("move", true);
         }
         else
         {
-            anim.SetInteger("transition", 0);
+            anim.SetBool("move", false);
         }
     }
 }
