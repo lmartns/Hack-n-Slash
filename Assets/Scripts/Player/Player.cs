@@ -5,17 +5,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
     SpriteRenderer sr;
-    
     public float speed = 4f;
-    public Animator animator;
-
     private Vector3 facingRight;
     private Vector3 facingLeft;
     public float jumpForce = 10f;
-
     public bool isGround;
+    public bool pulopulo;
 
     void Start()
     {
@@ -28,12 +25,16 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && isGround == true)
+        Onjump();
+    }
+
+    void Onjump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && isGround == true)
         {
             rb.AddForce(transform.up * jumpForce);
             isGround = false;
         }
-        animation();
     }
 
     void FixedUpdate()
@@ -41,35 +42,25 @@ public class Player : MonoBehaviour
         movement();
     }
 
-    #region Movement
     void movement()
     {
         if (Input.GetKey(KeyCode.D))
         {
             rb.velocity = new Vector2(speed, 0);
-            animator.SetBool("Run", true);
             sr.flipX = false;
         }
         else if (Input.GetKey(KeyCode.A))
         {
             rb.velocity = new Vector2(-speed, 0);
-            animator.SetBool("Run", true);
             sr.flipX = true;
         }
         else
         {
             rb.velocity = new Vector2(0, 0);
-            animator.SetBool("Run", false);
         }
     }
-    #endregion 
 
-    void jump()
-    {
-    
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "ground")
         {
@@ -77,17 +68,17 @@ public class Player : MonoBehaviour
         }
     }
 
-    void animation()
+    void pulo()
     {
-        if(isGround==false)
+        if (isGround == false)
         {
-            animator.SetBool("Jump", true);
+            pulopulo = false;
+            Debug.Log("test");
         }
-         if(isGround==true)
+        else if (isGround == true)
         {
-            animator.SetBool("Jump", false);
+            pulopulo = false;
+            Debug.Log("test2");
         }
-        
-
     }
 }
