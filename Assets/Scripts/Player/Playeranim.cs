@@ -9,7 +9,6 @@ public class Playeranim : MonoBehaviour
 
 
 
-
     void Start()
     {
         playerjump = GetComponent<Player>();
@@ -18,22 +17,9 @@ public class Playeranim : MonoBehaviour
 
     void Update()
     {
-        //AnimaJump();
+
         AnimaRun();
 
-    }
-
-    void AnimaJump()
-    {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            Debug.Log(anim.GetInteger("transition"));
-            anim.SetInteger("transition", 2);
-        }
-        else if (playerjump.isGround == true)
-        {
-            anim.SetInteger("transition", 0);
-        }
     }
 
     void AnimaRun()
