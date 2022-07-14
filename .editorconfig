@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# IDE0011: Adicionar chaves
+csharp_prefer_braces = false

@@ -4,32 +4,31 @@ using UnityEngine;
 
 public class Playeranim : MonoBehaviour
 {
-    public Player playerjump;
+    public Player playervar;
     public Animator anim;
-
-
 
     void Start()
     {
-        playerjump = GetComponent<Player>();
+        playervar = GetComponent<Player>();
         anim = GetComponent<Animator>();
     }
 
     void Update()
     {
 
-        AnimaRun();
+        Movement();
+        attack();
 
     }
 
-    void AnimaRun()
+    void Movement()
     {
-        if (playerjump.isGround == false)
+        if (playervar.isGround == false)
         {
             anim.SetBool("jump", true);
             anim.SetBool("move", false);
         }
-        else if (playerjump.isGround == true)
+        else if (playervar.isGround == true)
         {
             anim.SetBool("jump", false);
         }
@@ -43,4 +42,19 @@ public class Playeranim : MonoBehaviour
             anim.SetBool("move", false);
         }
     }
+
+    void attack()
+    {
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            anim.SetBool("attack", true);
+        }
+        else if (Input.GetButtonUp("Fire1"))
+        {
+            anim.SetBool("attack", false);
+        }
+    }
+
+
 }

@@ -20,20 +20,12 @@ public class Player : MonoBehaviour
         facingRight = transform.localScale;
         facingLeft = transform.localScale;
         facingLeft.x = facingLeft.x * -1;
+
     }
 
     void Update()
     {
         Onjump();
-    }
-
-    public void Onjump()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && isGround == true)
-        {
-            rb.AddForce(transform.up * jumpForce);
-            isGround = false;
-        }
     }
 
     void FixedUpdate()
@@ -56,6 +48,14 @@ public class Player : MonoBehaviour
         else
         {
             rb.velocity = new Vector2(0, 0);
+        }
+    }
+    public void Onjump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && isGround == true)
+        {
+            rb.AddForce(transform.up * jumpForce);
+            isGround = false;
         }
     }
 
