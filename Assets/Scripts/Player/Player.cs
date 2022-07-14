@@ -7,11 +7,12 @@ public class Player : MonoBehaviour
 {
     public Rigidbody2D rb;
     SpriteRenderer sr;
-    public float speed = 4f;
-    private Vector3 facingRight;
-    private Vector3 facingLeft;
+    public float move;
+    public Vector3 facingRight;
+    public Vector3 facingLeft;
     public float jumpForce = 10f;
     public bool isGround;
+    public float speed = 4f;
 
     void Start()
     {
@@ -31,24 +32,25 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         movement();
+        Movespeed();
     }
 
     void movement()
     {
-        if (Input.GetKey(KeyCode.D))
+        move = Input.GetAxis("Horizontal");
+        
+        if(move < 0) 
         {
-            rb.velocity = new Vector2(speed, 0);
-            sr.flipX = false;
-        }
-        else if (Input.GetKey(KeyCode.A))
-        {
-            rb.velocity = new Vector2(-speed, 0);
             sr.flipX = true;
         }
-        else
+        else if (move > 0)
         {
-            rb.velocity = new Vector2(0, 0);
+            sr.flipX = false;
         }
+    }
+    void Movespeed()
+    {
+        rb.velocity = new Vector2 (move * speed, rb.velocity.y);
     }
     public void Onjump()
     {

@@ -16,7 +16,7 @@ public class Playeranim : MonoBehaviour
     void Update()
     {
 
-        Movement();
+        //Movement();
         attack();
 
     }
@@ -50,7 +50,7 @@ public class Playeranim : MonoBehaviour
         {
             anim.SetBool("attack", true);
         }
-        else if (Input.GetButtonUp("Fire1"))
+        else
         {
             anim.SetBool("attack", false);
         }
