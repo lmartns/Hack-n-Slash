@@ -15,46 +15,32 @@ public class Playeranim : MonoBehaviour
 
     void Update()
     {
-
-        //Movement();
-        attack();
-
+        Run();
+        Jump();
     }
 
-    void Movement()
+    void Run ()
     {
-        if (playervar.isGround == false)
+        if (playervar.playerRun == true)
         {
-            anim.SetBool("jump", true);
-            anim.SetBool("move", false);
-        }
-        else if (playervar.isGround == true)
-        {
-            anim.SetBool("jump", false);
-        }
-
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
-        {
-            anim.SetBool("move", true);
+            anim.SetBool("Run", true);
         }
         else
         {
-            anim.SetBool("move", false);
+            anim.SetBool("Run", false);
         }
     }
-
-    void attack()
+    void Jump()
     {
-
-        if (Input.GetButtonDown("Fire1"))
+        if(playervar.playerJump == true)
         {
-            anim.SetBool("attack", true);
+            anim.SetBool("Jump", true);
         }
         else
         {
-            anim.SetBool("attack", false);
+            anim.SetBool("Jump", false);
         }
     }
-
+    
 
 }

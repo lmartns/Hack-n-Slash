@@ -1,71 +1,70 @@
-using System.Transactions;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     public Rigidbody2D rb;
     SpriteRenderer sr;
-    public float move;
-    public Vector3 facingRight;
-    public Vector3 facingLeft;
-    public float jumpForce = 10f;
-    public bool isGround;
-    public float speed = 4f;
+    public float speed;
+    public float jumpForce;
+    public bool inFloor = true;
+    public bool playerRun;
+    public bool playerJump;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-        facingRight = transform.localScale;
-        facingLeft = transform.localScale;
-        facingLeft.x = facingLeft.x * -1;
 
     }
 
     void Update()
     {
-        Onjump();
+        Jump();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         movement();
-        Movespeed();
     }
 
-    void movement()
+    public void movement()
     {
-        move = Input.GetAxis("Horizontal");
-        
-        if(move < 0) 
-        {
-            sr.flipX = true;
-        }
-        else if (move > 0)
+        float horizontalMove = Input.GetAxisRaw("Horizontal");
+        rb.velocity = new Vector2 (horizontalMove * speed, rb.velocity.y);
+
+        if(horizontalMove > 0)
         {
             sr.flipX = false;
+            playerRun = true;
+        }
+
+        else if (horizontalMove < 0)
+        {
+            sr.flipX = true;
+            playerRun = true;
+        }
+        else
+        {
+            playerRun = false;
         }
     }
-    void Movespeed()
+    
+    void Jump()
     {
-        rb.velocity = new Vector2 (move * speed, rb.velocity.y);
-    }
-    public void Onjump()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && isGround == true)
+        if (Input.GetButtonDown("Jump") && inFloor)
         {
-            rb.AddForce(transform.up * jumpForce);
-            isGround = false;
+            playerJump = true;
+            rb.AddForce(new Vector2(0, jumpForce));
+            inFloor = false;
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "ground")
+        if (collision.gameObject.tag == "Ground")
         {
-            isGround = true;
+            playerJump = false;
+            inFloor = true;
         }
     }
 }
