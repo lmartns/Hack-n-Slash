@@ -18,7 +18,6 @@ public class Playeranim : MonoBehaviour
         Run();
         Jump();
     }
-
     void Run ()
     {
         if (playervar.playerRun == true)
