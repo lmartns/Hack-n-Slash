@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Playeranim : MonoBehaviour
 {
-    public Player playervar;
+    public Player PlayerVar;
     public Animator anim;
+    public bool AttackingBool;
 
     void Start()
     {
-        playervar = GetComponent<Player>();
+        PlayerVar = GetComponent<Player>();
         anim = GetComponent<Animator>();
     }
 
@@ -17,10 +18,11 @@ public class Playeranim : MonoBehaviour
     {
         Run();
         Jump();
+        Attack();
     }
     void Run ()
     {
-        if (playervar.playerRun == true)
+        if (PlayerVar.playerRun == true)
         {
             anim.SetBool("Run", true);
         }
@@ -31,7 +33,7 @@ public class Playeranim : MonoBehaviour
     }
     void Jump()
     {
-        if(playervar.playerJump == true)
+        if(PlayerVar.playerJump == true)
         {
             anim.SetBool("Jump", true);
         }
@@ -40,6 +42,17 @@ public class Playeranim : MonoBehaviour
             anim.SetBool("Jump", false);
         }
     }
-    
-
+    void Attack()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {   
+            anim.SetBool("Attack", true);
+            PlayerVar.speed = 0;
+        }
+        else if (Input.GetButtonUp("Fire1"))
+        {
+            anim.SetBool("Attack", false);
+            PlayerVar.speed = 20;
+        }
+    }
 }

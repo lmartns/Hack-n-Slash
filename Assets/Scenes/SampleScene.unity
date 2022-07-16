@@ -373,10 +373,10 @@ MonoBehaviour:
   m_DeadZoneHeight: 0
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
-  m_SoftZoneWidth: 0.8
-  m_SoftZoneHeight: 0.8
+  m_SoftZoneWidth: 0.84
+  m_SoftZoneHeight: 0.84
   m_BiasX: 0
-  m_BiasY: 0
+  m_BiasY: -0.14
   m_CenterOnActivate: 1
   m_GroupFramingMode: 2
   m_AdjustmentMode: 0
@@ -997,7 +997,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   speed: 20
-  jumpForce: 5200
+  jumpForce: 4900
   inFloor: 1
   playerRun: 0
   playerJump: 0
