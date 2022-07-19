@@ -19,8 +19,9 @@ public class Playeranim : MonoBehaviour
         Run();
         Jump();
         Attack();
+        Slide();
     }
-    void Run ()
+    void Run()
     {
         if (PlayerVar.playerRun == true)
         {
@@ -33,7 +34,7 @@ public class Playeranim : MonoBehaviour
     }
     void Jump()
     {
-        if(PlayerVar.playerJump == true)
+        if (PlayerVar.playerJump == true)
         {
             anim.SetBool("Jump", true);
         }
@@ -45,7 +46,7 @@ public class Playeranim : MonoBehaviour
     void Attack()
     {
         if (Input.GetButtonDown("Fire1"))
-        {   
+        {
             anim.SetBool("Attack", true);
             PlayerVar.speed = 0;
         }
@@ -53,6 +54,13 @@ public class Playeranim : MonoBehaviour
         {
             anim.SetBool("Attack", false);
             PlayerVar.speed = 20;
+        }
+    }
+    void Slide()
+    {
+        if (PlayerVar.playerSlide == true)
+        {
+            anim.SetTrigger("Slide");
         }
     }
 }

@@ -9,17 +9,21 @@ public class Player : MonoBehaviour
     public bool inFloor = true;
     public bool playerRun;
     public bool playerJump;
+    public bool playerDash;
+    public bool playerSlide;
+
+ 
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-
     }
 
     void Update()
     {
         Jump();
+        Slide();
     }
 
     private void FixedUpdate()
@@ -59,12 +63,26 @@ public class Player : MonoBehaviour
         }
     }
 
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground")
         {
             playerJump = false;
             inFloor = true;
+        }
+    }
+
+    void Slide()
+    {
+        if (Input.GetButtonDown("Fire3"))
+        {
+            playerSlide = true;
+        }
+
+        if (Input.GetButtonUp("Fire3"))
+        {
+            playerSlide = false;
         }
     }
 }
