@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -11,19 +13,23 @@ public class Player : MonoBehaviour
     public bool playerJump;
     public bool playerDash;
     public bool playerSlide;
+    public bool EnableSlide;
+    public float TimeSlideee = 0.4f;
 
- 
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        EnableSlide = true;
     }
 
     void Update()
     {
         Jump();
         Slide();
+        _ = StartCoroutine("Test");
     }
 
     private void FixedUpdate()
@@ -75,14 +81,20 @@ public class Player : MonoBehaviour
 
     void Slide()
     {
-        if (Input.GetButtonDown("Fire3"))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && EnableSlide == true)
         {
             playerSlide = true;
+            EnableSlide = false;
         }
 
-        if (Input.GetButtonUp("Fire3"))
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             playerSlide = false;
         }
     }
+        IEnumerator Test()
+        {
+            yield return new WaitForSeconds (TimeSlideee);
+            EnableSlide = true;
+        } 
 }
