@@ -15,6 +15,9 @@ public class Player : MonoBehaviour
     public bool playerSlide;
     public bool EnableSlide;
     public float TimeSlideee = 0.4f;
+    public float slideForce = 40f;
+    public float distancia;
+    public float horizontalMove;
 
 
 
@@ -29,7 +32,6 @@ public class Player : MonoBehaviour
     {
         Jump();
         Slide();
-        _ = StartCoroutine("Test");
     }
 
     private void FixedUpdate()
@@ -39,7 +41,7 @@ public class Player : MonoBehaviour
 
     public void movement()
     {
-        float horizontalMove = Input.GetAxisRaw("Horizontal");
+        horizontalMove = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2 (horizontalMove * speed, rb.velocity.y);
 
         if(horizontalMove > 0)
@@ -64,7 +66,7 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Jump") && inFloor)
         {
             playerJump = true;
-            rb.AddForce(new Vector2(0, jumpForce));
+            rb.AddForce(transform.up * jumpForce);
             inFloor = false;
         }
     }
@@ -81,19 +83,23 @@ public class Player : MonoBehaviour
 
     void Slide()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && EnableSlide == true)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && EnableSlide == true && inFloor == true)
         {
+            rb.velocity = new Vector2 (rb.velocity.x, 0f);
+            rb.AddForce(new Vector2(distancia * horizontalMove, 0f), ForceMode2D.Force);
             playerSlide = true;
             EnableSlide = false;
+            StartCoroutine("Test");
         }
 
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        else
         {
             playerSlide = false;
         }
     }
         IEnumerator Test()
         {
+            EnableSlide = false;
             yield return new WaitForSeconds (TimeSlideee);
             EnableSlide = true;
         } 

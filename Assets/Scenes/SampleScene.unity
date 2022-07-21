@@ -977,7 +977,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 60
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -996,15 +996,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  speed: 20
-  jumpForce: 4900
+  speed: 10
+  jumpForce: 500
   inFloor: 1
   playerRun: 0
   playerJump: 0
   playerDash: 0
   playerSlide: 0
   EnableSlide: 0
-  TimeSlideee: 4
+  TimeSlideee: 3
+  slideForce: 1000
+  distancia: 100
+  horizontalMove: 0
 --- !u!95 &1255792121
 Animator:
   serializedVersion: 4

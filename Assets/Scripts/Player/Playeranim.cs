@@ -49,18 +49,23 @@ public class Playeranim : MonoBehaviour
         {
             anim.SetBool("Attack", true);
             PlayerVar.speed = 0;
+            
         }
         else if (Input.GetButtonUp("Fire1"))
         {
             anim.SetBool("Attack", false);
-            PlayerVar.speed = 20;
+            PlayerVar.speed = 10;
         }
     }
     void Slide()
     {
         if (PlayerVar.playerSlide == true)
         {
-            anim.SetTrigger("Slide");
+            anim.SetBool("Slide", true);
+        }
+        else
+        {
+            anim.SetBool("Slide", false);
         }
     }
 }
