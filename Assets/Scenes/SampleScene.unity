@@ -882,11 +882,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1255792117}
   - component: {fileID: 1255792116}
-  - component: {fileID: 1255792120}
-  - component: {fileID: 1255792122}
   - component: {fileID: 1255792119}
   - component: {fileID: 1255792121}
   - component: {fileID: 1255792123}
+  - component: {fileID: 1255792125}
+  - component: {fileID: 1255792124}
+  - component: {fileID: 1255792126}
+  - component: {fileID: 1255792127}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -977,37 +979,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1255792120
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1255792115}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 979ef0da6feb46a6db76df896b510e25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  speed: 10
-  jumpForce: 500
-  inFloor: 1
-  playerRun: 0
-  playerJump: 0
-  playerDash: 0
-  playerSlide: 0
-  EnableSlide: 0
-  TimeSlideee: 3
-  slideForce: 1000
-  distancia: 100
-  horizontalMove: 0
 --- !u!95 &1255792121
 Animator:
   serializedVersion: 4
@@ -1028,21 +1005,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1255792122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1255792115}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8e6086c312430646869d8825ee9388e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerVar: {fileID: 0}
-  anim: {fileID: 0}
-  AttackingBool: 0
 --- !u!70 &1255792123
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1059,6 +1021,71 @@ CapsuleCollider2D:
   m_Offset: {x: -0.08, y: -0.03}
   m_Size: {x: 0.2, y: 0.38}
   m_Direction: 0
+--- !u!114 &1255792124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255792115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30000771aa6505b40ab1133743c860ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  speedBase: 5
+  horizontalMove: 0
+  dash: 50
+  timeDash: 0.09
+  isDash: 0
+  dashCoolDown: 2
+--- !u!114 &1255792125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255792115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d830cdb1ed23b343af49264d6c15cdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rb: {fileID: 1255792119}
+  _animator: {fileID: 1255792121}
+  currentState: 0
+  lastState: 0
+  _sr: {fileID: 0}
+  _move: {fileID: 1255792124}
+  _jump: {fileID: 1255792126}
+  _attack: {fileID: 1255792127}
+--- !u!114 &1255792126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255792115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d69a5eaaf5d28a4b8a7b28ee4631682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inFloor: 0
+  jumpForce: 10
+--- !u!114 &1255792127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255792115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34b0c9d602994164bb509ddf361883f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1815388168
 GameObject:
   m_ObjectHideFlags: 0

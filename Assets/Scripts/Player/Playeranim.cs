@@ -45,7 +45,7 @@ public class Playeranim : MonoBehaviour
     }
     void Attack()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && PlayerVar.inFloor == true)
         {
             anim.SetBool("Attack", true);
             PlayerVar.speed = 0;
