@@ -28,33 +28,32 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Movement()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal");
-        if(horizontalMove == 0)
-        {
-            playerController._animator.SetBool("Run", false);
-        }
-        else
-        {
-            playerController._animator.SetBool("Run", true);
-        }
-
-        if(playerController.GetCurrentState() != PlayerStatesMachine.MOVE)
+        if (playerController.GetCurrentState() != PlayerStatesMachine.MOVE)
         {
             return;
         }
         else
         {
+            horizontalMove = Input.GetAxisRaw("Horizontal");
             playerController._rb.velocity = new Vector2(horizontalMove * speed, playerController._rb.velocity.y);
-        }
+            if (horizontalMove == 0)
+            {
+                playerController._animator.SetBool("Run", false);
+            }
+            else
+            {
+                playerController._animator.SetBool("Run", true);
+            }
 
-        if (horizontalMove > 0)
-        {
-            playerController._sr.flipX = false;
-        }
+            if (horizontalMove > 0)
+            {
+                playerController._sr.flipX = false;
+            }
 
-        else if (horizontalMove < 0)
-        {
-            playerController._sr.flipX = true;
+            else if (horizontalMove < 0)
+            {
+                playerController._sr.flipX = true;
+            }
         }
 
     }

@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour
                 break;
             case PlayerStatesMachine.ATTACK:
                 {
-                   
+                    _rb.velocity = Vector2.zero;
                 }
                 break;
       
