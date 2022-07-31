@@ -5,22 +5,33 @@ using UnityEngine;
 public class EnemyFollow : MonoBehaviour
 {
 
-    public float Speed;
-    public float Stop;
-    private Transform Target;
+    public float speed;
+    public float stop;
+    public Transform target;
+    public bool following;
 
     // Start is called before the first frame update
     void Start()
     {
-        Target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Vector2.Distance(transform.position, Target.position) > Stop) 
+        Follow();
+    }
+
+    public void Follow()
+    {
+        if (Vector2.Distance(transform.position, target.position) > stop)
         {
-            transform.position = Vector2.MoveTowards(transform.position, Target.position, Speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+            following = true;
+        }
+        else
+        {
+            following = false;
         }
     }
 }

@@ -27,7 +27,6 @@ public class PlayerAttack : MonoBehaviour
             playerController.SwitchState(PlayerStatesMachine.ATTACK);
             playerController._animator.SetBool("Attack", true);
         }
-        
 
     }
 }

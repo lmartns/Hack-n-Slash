@@ -4,15 +4,34 @@ using UnityEngine;
 
 public class Goblin : MonoBehaviour
 {
-    // Start is called before the first frame update
+    readonly EnemyFollow enemyFollow;
+
+    public Rigidbody2D rb;
+    public Animator anim;
+    public SpriteRenderer sr;
+
     void Start()
     {
-        
+        anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        
+        Run();
+    }
+
+    public void Run()
+    {
+        if(enemyFollow.following == true)
+        {
+            anim.SetBool("Run", true);
+        }
+        else
+        {
+            anim.SetBool("Run", false);
+        }
     }
 }
